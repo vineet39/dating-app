@@ -62,7 +62,7 @@ namespace DatingApp.API.Data
             user.passwordSalt = passwordSalt;
 
             _context.Users.AddAsync(user);
-             _context.SaveChangesAsync();
+            _context.SaveChangesAsync();
              
         }
 
