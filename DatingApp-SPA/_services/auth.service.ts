@@ -25,4 +25,9 @@ constructor(private http: HttpClient) { }
   return this.http.post(this.baseUrl + 'register', model);
  }
 
+ loggedIn() {
+  const token = localStorage.getItem('token');
+  return !!token;
+}
+
 }
