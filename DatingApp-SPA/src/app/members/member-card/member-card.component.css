@@ -1,0 +1,19 @@
+.card-img-wrapper{
+    position: relative;
+}
+
+.member-icon{
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    left: 0;
+}
+
+.card-img-wrapper:hover .member-icon{
+    bottom: 0;
+    opacity: 1;
+}
+
+.animate{
+    transition: all 0.3s ease;
+}

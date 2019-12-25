@@ -27,6 +27,11 @@ namespace DatingApp.API
         {
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddCors();
+            services.AddMvc()             
+   .AddNewtonsoftJson(opt => {
+      opt.SerializerSettings.ReferenceLoopHandling = 
+      Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+   });
             services.AddAutoMapper(typeof(Startup));
             services.AddControllers().AddNewtonsoftJson();
             services.AddScoped<IAuthRepository, AuthRepository>();

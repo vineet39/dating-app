@@ -20,6 +20,7 @@ export class NavComponent implements OnInit {
   login() {
     this.authService.login(this.model).subscribe(next => {
       console.log('Success');
+      this.model = '';
       this.alerify.success('Success');
       this.router.navigate(['/members']);
     }, error => {
@@ -36,5 +37,6 @@ export class NavComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('token');
+    this.router.navigate(['']);
   }
 }

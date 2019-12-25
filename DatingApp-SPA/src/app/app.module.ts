@@ -8,7 +8,8 @@ import { NavComponent } from './nav/nav.component';
 import { AuthService } from '_services/auth.service';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
-import { MembersListComponent } from './members-list/members-list.component';
+import { MembersListComponent } from './members/members-list/members-list.component';
+import { MemberCardComponent } from './members/member-card/member-card.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { RouterModule } from '@angular/router';
@@ -25,7 +26,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       HomeComponent,
       MembersListComponent,
       ListsComponent,
-      MessagesComponent
+      MessagesComponent,
+      MemberCardComponent
    ],
    imports: [
       BrowserModule,
