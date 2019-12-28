@@ -1,0 +1,27 @@
+.cards{
+    text-align: center;
+}
+
+.primary{
+    margin-right: 15px;
+    background-color: lightcoral;
+    border: none;
+}
+.primary:active:focus {
+    background-color: lightcoral;
+    border: none;
+  }
+
+.secondary{
+    background-color: darkcyan;
+    border-color: darkcyan;
+}
+
+.secondary:active:focus{
+    background-color: darkcyan;
+    border:0px;
+}
+
+.tab-panel,.card{
+    height: 600px;
+}
