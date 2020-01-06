@@ -29,8 +29,7 @@ export class MemberEditComponent implements OnInit {
   }
 
   foo() {
-    // alert('foo');
-    // foobar;
+     alert('foo');
  }
 
 }
