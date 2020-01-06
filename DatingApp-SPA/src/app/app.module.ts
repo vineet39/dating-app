@@ -19,12 +19,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxGalleryModule } from 'ngx-gallery';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { MemberDetailResolver } from '_resolvers/member-detail.resolver';
+import { JwtModule } from '@auth0/angular-jwt';
+import { MemberEditResolver } from '_resolvers/member-edit.resolver';
 
 export class CustomHammerConfig extends HammerGestureConfig  {
    overrides = {
        pinch: { enable: false },
        rotate: { enable: false }
    };
+}
+
+export function tokenGetter() {
+   return localStorage.getItem('token');
 }
 
 
@@ -39,7 +47,8 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       ListsComponent,
       MessagesComponent,
       MemberCardComponent,
-      MemberDetailComponent
+      MemberDetailComponent,
+      MemberEditComponent
    ],
    imports: [
       BrowserModule,
@@ -49,14 +58,34 @@ export class CustomHammerConfig extends HammerGestureConfig  {
       BrowserAnimationsModule,
       BsDropdownModule.forRoot(),
       TabsModule.forRoot(),
-      NgxGalleryModule
+      NgxGalleryModule,
+      JwtModule.forRoot({
+         config: {
+            tokenGetter,
+            whitelistedDomains: ['localhost:5000'],
+            blacklistedRoutes: ['localhost:5000/api/auth']
+         }
+      })
    ],
    providers: [
       AuthService,
-      { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig }
+      { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig },
+      MemberDetailResolver,
+      MemberEditResolver
    ],
    bootstrap: [
       AppComponent
    ]
 })
-export class AppModule { }
+export class AppModule {
+
+private newMethod() {
+   return JwtModule.forRoot({
+      config: {
+         tokenGetter,
+         whitelistedDomains: ['localhost:5000'],
+         blacklistedRoutes: ['localhost:5000/api/auth']
+      }
+   });
+}
+}

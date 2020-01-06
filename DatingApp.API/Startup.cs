@@ -61,7 +61,7 @@ namespace DatingApp.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseAuthorization(); 
+                // app.UseAuthorization(); 
                 IdentityModelEventSource.ShowPII = true; 
             }
 
@@ -70,7 +70,7 @@ namespace DatingApp.API
             app.UseRouting();           
             
             app.UseAuthentication();
-            
+            app.UseAuthorization();
             app.UseCors(x => x.AllowAnyMethod().AllowAnyOrigin().AllowAnyHeader());
 
             app.UseEndpoints(endpoints =>
