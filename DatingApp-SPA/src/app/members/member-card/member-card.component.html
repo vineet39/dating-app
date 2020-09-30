@@ -1,20 +1,10 @@
-<!-- <div class="card" style="width: 15rem;">
-<img class="card-img-top" src="https://media.gq.com/photos/5ddc068cf9da7100098924e0/16:9/w_2560%2Cc_limit/KKW-SKIMS-Shapewear-for-Men-GQ-2019-112519.jpg" alt="Card image cap">
-  <div class="card-body text-center">
-    <p class="card-title">{{user.userName}}</p>
-    <p class="card-text text-muted" id="card-name">
-      <i class="fa fa-user">  {{ user.knownAs}}</i>
-    </p>
-  </div>
-</div> -->
-
 <div class="card mb-4">
   <div class="card-img-wrapper">
       <img class="card-img-top" src="https://media.gq.com/photos/5ddc068cf9da7100098924e0/16:9/w_2560%2Cc_limit/KKW-SKIMS-Shapewear-for-Men-GQ-2019-112519.jpg" alt="Card image cap">
       <ul class="list-inline member-icon animate text-center" style="margin-top: 15px">
-          <li class="list-inline-item"> <button class="btn btn-primary" [routerLink]="['/members/', user.id]" routerLinkActive="router-link-active" ><i class="fa fa-user"></i></button></li>
-          <li class="list-inline-item"> <button class="btn btn-primary"><i class="fa fa-heart"></i></button></li>
-          <li class="list-inline-item"> <button class="btn btn-primary"><i class="fa fa-envelope"></i></button></li>
+          <li class="list-inline-item"> <button class="btn btn-primary" [routerLink]="['/members/', user.id]" routerLinkActive="router-link-active" ><i class="fa fa-user icon"></i></button></li>
+          <li class="list-inline-item"> <button class="btn btn-primary"><i class="fa fa-heart icon"></i></button></li>
+          <li class="list-inline-item"> <button class="btn btn-primary"><i class="fa fa-envelope icon"></i></button></li>
       </ul>
    </div>
   <div class="card-body p-1">
@@ -31,3 +21,16 @@
     </p>
   </div>
  </div>
+
+ <script>
+ $(window).on('resize', function() {
+  var win = $(this);
+  if (win.width() > 600) {
+
+    $('#123').addClass('btn-lg');
+
+  } else {
+    $('#123').removeClass('btn-lg');
+  }
+});
+</script>
