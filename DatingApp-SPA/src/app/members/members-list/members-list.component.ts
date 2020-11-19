@@ -11,10 +11,16 @@ import { PaginatedResult, Pagination } from '_models/pagination';
 })
 export class MembersListComponent implements OnInit {
   users: Users[];
+  user: Users = JSON.parse(localStorage.getItem('user'));
+  genderList = [{value: 'male', display: 'Males'}, {value: 'female', display: 'Females'}];
+  userParams: any = {};
   pagination: Pagination;
   constructor(private userService: UserService, private alertify: AlertifyService) { }
 
   ngOnInit() {
+    this.userParams.gender = this.userParams.gender === 'female' ? 'male' : 'female';
+    this.userParams.minAge = 18;
+    this.userParams.maxAge = 99;
     this.loadUsers(1, 6);
   }
 
@@ -22,9 +28,19 @@ export class MembersListComponent implements OnInit {
     this.pagination.currentPage = event.page;
     this.loadUsers(this.pagination.currentPage, 6);
   }
-
+  resetFilters() {
+    this.userParams.gender = this.userParams.gender === 'female' ? 'male' : 'female';
+    this.userParams.minAge = 18;
+    this.userParams.maxAge = 99;
+    this.userParams.orderBy = 'lastActive';
+    this.loadUsers(this.pagination.currentPage, 6);
+  }
   loadUsers(pageNum: number, numOfItems: number) {
-    this.userService.getUsers(pageNum, numOfItems).subscribe((value: PaginatedResult<Users[]>) => {
+    if (this.userParams.minAge >= this.userParams.maxAge) {
+      this.alertify.error('Min age cannot be greater than max age');
+      return;
+    }
+    this.userService.getUsers(pageNum, numOfItems, this.userParams).subscribe((value: PaginatedResult<Users[]>) => {
       this.users = value.result;
       this.pagination = value.pagination;
     }, (error: any) => {
