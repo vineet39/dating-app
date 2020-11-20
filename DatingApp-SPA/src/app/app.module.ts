@@ -23,6 +23,7 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { MemberDetailResolver } from '_resolvers/member-detail.resolver';
 import { JwtModule } from '@auth0/angular-jwt';
 import { MemberEditResolver } from '_resolvers/member-edit.resolver';
+import { ListsResolver } from '_resolvers/list.resolver';
 
 export class CustomHammerConfig extends HammerGestureConfig  {
    overrides = {
@@ -73,7 +74,8 @@ export function tokenGetter() {
       AuthService,
       { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig },
       MemberDetailResolver,
-      MemberEditResolver
+      MemberEditResolver,
+      ListsResolver
    ],
    bootstrap: [
       AppComponent

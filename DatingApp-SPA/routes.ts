@@ -8,13 +8,14 @@ import { MemberDetailComponent } from 'src/app/members/member-detail/member-deta
 import { MemberEditComponent } from 'src/app/members/member-edit/member-edit.component';
 import { MemberDetailResolver } from '_resolvers/member-detail.resolver';
 import { MemberEditResolver } from '_resolvers/member-edit.resolver';
+import { ListsResolver } from '_resolvers/list.resolver';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent},
     { path: 'members', component: MembersListComponent, canActivate: [AuthGuard]},
     { path: 'members/edit', component: MemberEditComponent, canActivate: [AuthGuard], resolve: {user: MemberEditResolver}},
     { path: 'members/:id', component: MemberDetailComponent, canActivate: [AuthGuard], resolve: {user: MemberDetailResolver}},
-    { path: 'lists', component: ListsComponent},
+    { path: 'lists', component: ListsComponent, resolve: {user: ListsResolver}},
     { path: 'messages', component: MessagesComponent},
     { path: '**', redirectTo: '', pathMatch: 'full'},
 ];
