@@ -110,5 +110,19 @@ namespace DatingApp.API.Data
                 return user.Likees.Where(u => u.LikerId == id).Select(i => i.LikeeId);
             }
         }
+
+        public async Task<Photo> GetPhoto(int id)
+        {
+            var photo = await _context.Photos.FirstOrDefaultAsync(p => p.Id == id);
+
+            return photo;
+        }
+
+         public async Task<Photo> GetPhotoByUser(int id)
+        {
+            var photo = await _context.Photos.FirstOrDefaultAsync(p => p.UserId == id && p.IsMain == true);
+
+            return photo;
+        }
     }
 }

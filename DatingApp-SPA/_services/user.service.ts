@@ -71,4 +71,7 @@ export class UserService {
   sendLike(id: number, recepientId: number) {
     return this.http.post(this.baseUrl + 'users/' + id + '/like/' + recepientId, {});
   }
+  setPhotoAsMain(id: number) {
+    return this.http.post(this.baseUrl + 'users/' + id + '/setMain', {});
+  }
 }

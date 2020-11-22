@@ -53,7 +53,7 @@ namespace DatingApp.API.Controllers
         {
             var user = await _repo.GetUser(id);
             
-            var userToReturn = _mapper.Map<UserForListDto>(user);
+            var userToReturn = _mapper.Map<UserForDetailedDto>(user);
             
             return Ok(userToReturn);
         }
@@ -99,6 +99,28 @@ namespace DatingApp.API.Controllers
                 return NoContent();
             
             return BadRequest("Failed to like user");
+        }
+
+        [HttpPost("{id}/setMain")]
+        public async Task<IActionResult> SetPhotoAsMain(int id)
+        {   
+            
+            var newMainPhoto = await _repo.GetPhoto(id);
+
+            if(newMainPhoto.IsMain)
+            {
+                return BadRequest("This is already your main photo");
+            }
+            
+            var currentMainPhoto = await _repo.GetPhotoByUser(newMainPhoto.UserId);
+
+            currentMainPhoto.IsMain = false;
+            newMainPhoto.IsMain = true;
+            
+            if(await _repo.SaveAll())
+                return NoContent();
+            
+            return BadRequest("Could not set photo as main");
         }
     }
 }

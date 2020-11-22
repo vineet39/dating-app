@@ -1,63 +1,63 @@
 <div class="container" style="margin-top: 100px;">
-  <div class="row">
-      <div class="col-lg-4">
-        <h1>Your Profile</h1>
-      </div> 
-    <div class="col-lg-8">
-      <div class="alert alert-info" *ngIf="editForm.dirty">
-        <strong>Information:</strong> You have made some changes!!
-      </div>
-    </div>
-    <div class="col-lg-4">
-      <div class="card">
-        <img class="card-img-top" src="https://media.gq.com/photos/5ddc068cf9da7100098924e0/16:9/w_2560%2Cc_limit/KKW-SKIMS-Shapewear-for-Men-GQ-2019-112519.jpg" alt="Card image cap">
-        <div class="card-body">
-          <div>
-            <strong>Location:</strong>
-            <p>{{user.city}}</p>
-          </div>
-          <div>
-              <strong>Known as:</strong>
-              <p>{{user.knownAs}}</p>
-          </div>
-          <div>
-                <strong>Member since:</strong>
-                <p>{{user.lastActive}}</p>
-          </div>
-          <div class="cards">
-              <button class="btn btn-success btn-block" form="edit" (click)="updateUser()" >Save Changes</button>
+    <div class="row">
+        <div class="col-lg-4">
+            <h1>Your Profile</h1>
+        </div>
+        <div class="col-lg-8">
+            <div class="alert alert-info" *ngIf="editForm.dirty">
+                <strong>Information:</strong> You have made some changes!!
             </div>
         </div>
-       
-      </div>
-    </div>
-    <div class="col-lg-8">
-      <div class="tab-panel">
-        <tabset class="member-tabset">
-          <tab heading="Edit Profile">
-            <form action="" #editForm="ngForm" id="edit" (ngSubmit)="updateUser()">
-                <p></p>
-                <h4>Description:</h4>
-                <textarea name="introduction"rows="6" class="form-control" [(ngModel)]="user.introduction"></textarea>
-                <p></p>
-                <h4>Looking for:</h4>
-                <textarea name="lookingFor" rows="6" class="form-control" [(ngModel)]="user.lookingFor"></textarea>
-                <p></p>
-                <h4>Location Details:</h4>
-                <div class="form-inline">
-                  <label for="city">City:</label>
-                  <input type="text" class="form-control" name="city" [(ngModel)]="user.city">
-                  <label for="country">Country:</label>
-                  <input type="text" class="form-control" name="country" [(ngModel)]="user.country">
+        <div class="col-lg-4">
+            <div class="card">
+                <img class="card-img-top" src={{user.photoUrl}} alt="Card image cap">
+                <div class="card-body">
+                    <div>
+                        <strong>Location:</strong>
+                        <p>{{user.city}}</p>
+                    </div>
+                    <div>
+                        <strong>Known as:</strong>
+                        <p>{{user.knownAs}}</p>
+                    </div>
+                    <div>
+                        <strong>Member since:</strong>
+                        <p>{{user.lastActive}}</p>
+                    </div>
+                    <div class="cards">
+                        <button class="btn btn-success btn-block" form="edit" (click)="updateUser()">Save Changes</button>
+                    </div>
                 </div>
-            </form>
-            
-          </tab>
-          <tab heading="Edit Photos">
-          <p>Photo edit will go here</p>
-          </tab>
-        </tabset>
-      </div>
+
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div class="tab-panel">
+                <tabset class="member-tabset">
+                    <tab heading="Edit Profile">
+                        <form action="" #editForm="ngForm" id="edit" (ngSubmit)="updateUser()">
+                            <p></p>
+                            <h4>Description:</h4>
+                            <textarea name="introduction" rows="6" class="form-control" [(ngModel)]="user.introduction"></textarea>
+                            <p></p>
+                            <h4>Looking for:</h4>
+                            <textarea name="lookingFor" rows="6" class="form-control" [(ngModel)]="user.lookingFor"></textarea>
+                            <p></p>
+                            <h4>Location Details:</h4>
+                            <div class="form-inline">
+                                <label for="city">City:</label>
+                                <input type="text" class="form-control" name="city" [(ngModel)]="user.city">
+                                <label for="country">Country:</label>
+                                <input type="text" class="form-control" name="country" [(ngModel)]="user.country">
+                            </div>
+                        </form>
+
+                    </tab>
+                    <tab heading="Edit Photos">
+                        <app-photo-editor [photos]="user.photos"></app-photo-editor>
+                    </tab>
+                </tabset>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

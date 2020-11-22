@@ -1,31 +1,33 @@
-.cards{
+.cards {
     text-align: center;
 }
 
-.primary{
+.primary {
     margin-right: 15px;
     background-color: lightcoral;
     border: none;
 }
+
 .primary:active:focus {
     background-color: lightcoral;
     border: none;
-  }
+}
 
-.secondary{
+.secondary {
     background-color: darkcyan;
     border-color: darkcyan;
 }
 
-.secondary:active:focus{
+.secondary:active:focus {
     background-color: darkcyan;
-    border:0px;
+    border: 0px;
 }
 
-.tab-panel,.card{
-    height: 600px;
+.tab-panel,
+.card {
+    margin-bottom: 100px;
 }
 
-.form-inline > *{
+.form-inline>* {
     margin-right: 10px;
 }

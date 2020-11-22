@@ -24,6 +24,8 @@ import { MemberDetailResolver } from '_resolvers/member-detail.resolver';
 import { JwtModule } from '@auth0/angular-jwt';
 import { MemberEditResolver } from '_resolvers/member-edit.resolver';
 import { ListsResolver } from '_resolvers/list.resolver';
+import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
+import { FileUploadModule } from "ng2-file-upload";
 
 export class CustomHammerConfig extends HammerGestureConfig  {
    overrides = {
@@ -49,12 +51,14 @@ export function tokenGetter() {
       MessagesComponent,
       MemberCardComponent,
       MemberDetailComponent,
-      MemberEditComponent
+      MemberEditComponent,
+      PhotoEditorComponent
    ],
    imports: [
       BrowserModule,
       HttpClientModule,
       FormsModule,
+      FileUploadModule,
       RouterModule.forRoot(appRoutes),
       BrowserAnimationsModule,
       BsDropdownModule.forRoot(),
