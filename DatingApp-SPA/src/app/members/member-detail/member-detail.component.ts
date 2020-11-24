@@ -4,6 +4,7 @@ import { AlertifyService } from '_services/alertify.service';
 import { UserService } from '_services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
+import { Photo } from '_models/Photo';
 
 @Component({
   selector: 'app-member-detail',
@@ -19,7 +20,6 @@ export class MemberDetailComponent implements OnInit {
   constructor(private userService: UserService, private alertify: AlertifyService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    // this.loadUser();
     this.route.data.subscribe(data => {
       this.user = data[this.newProperty];
     });
@@ -48,16 +48,15 @@ export class MemberDetailComponent implements OnInit {
 
   getImages() {
     const imgageUrls = [];
-    imgageUrls.push({
-        small: 'https://media.gq.com/photos/5ddc068cf9da7100098924e0/16:9/w_2560%2Cc_limit/KKW-SKIMS-Shapewear-for-Men-GQ-2019-112519.jpg',
-        medium: 'https://media.gq.com/photos/5ddc068cf9da7100098924e0/16:9/w_2560%2Cc_limit/KKW-SKIMS-Shapewear-for-Men-GQ-2019-112519.jpg',
-        big: 'https://media.gq.com/photos/5ddc068cf9da7100098924e0/16:9/w_2560%2Cc_limit/KKW-SKIMS-Shapewear-for-Men-GQ-2019-112519.jpg'
-    }, {
-      small: 'https://media.gq.com/photos/5ddc068cf9da7100098924e0/16:9/w_2560%2Cc_limit/KKW-SKIMS-Shapewear-for-Men-GQ-2019-112519.jpg',
-      medium: 'https://media.gq.com/photos/5ddc068cf9da7100098924e0/16:9/w_2560%2Cc_limit/KKW-SKIMS-Shapewear-for-Men-GQ-2019-112519.jpg',
-      big: 'https://media.gq.com/photos/5ddc068cf9da7100098924e0/16:9/w_2560%2Cc_limit/KKW-SKIMS-Shapewear-for-Men-GQ-2019-112519.jpg'
-  }
-  );
+    for (const photo in this.user.photos) {
+      if (photo != null) {
+        imgageUrls.push({
+          small: this.user.photos[photo].url,
+          medium: this.user.photos[photo].url,
+          big: this.user.photos[photo].url
+        });
+      }
+    }
     return imgageUrls;
   }
 
