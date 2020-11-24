@@ -99,5 +99,31 @@ namespace DatingApp.API.Controllers
             
             return BadRequest("Could not upload photo");
         }
+        
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePhoto(int id)
+        {   
+            var photoToBeDeleted = await _repo.GetPhoto(id);
+
+            if(photoToBeDeleted.IsMain)
+            {
+                return BadRequest("Cannot delete main photo");
+            }
+            
+            if(photoToBeDeleted.PublicId != null)
+            {
+                var deleteParams = new DeletionParams(photoToBeDeleted.PublicId);
+
+                var result = _cloudinary.Destroy(deleteParams);
+
+            }
+
+            _repo.Delete(photoToBeDeleted);
+
+            if(await _repo.SaveAll())
+                return NoContent();
+            
+            return BadRequest("Could not delete photo");
+        }
     }
 }

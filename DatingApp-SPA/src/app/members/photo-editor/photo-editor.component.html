@@ -3,7 +3,7 @@
         <img src={{photo.url}} class="img-thumbnail" alt="" />
         <div class="text-center mb-4">
             <button type="button" class="btn btn-sm" [disabled]="photo.isMain" (click)="setPhotoAsMain(photo)">Set Main</button>
-            <button type="button" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></button>
+            <button type="button" class="btn btn-sm btn-danger" (click)="deletePhoto(photo)"><i class="fa fa-trash-o"></i></button>
         </div>
     </div>
 </div>
