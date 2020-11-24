@@ -1,7 +1,17 @@
-.dropdown{
-    margin-left: 900px;
+.dropdown {
+    margin-left: 800px;
 }
 
-.form-inline{
+.form-inline {
     margin-left: 820px;
+}
+
+img {
+    max-height: 50px;
+    width: auto;
+    max-width: 50px;
+    border: 2px solid white;
+    margin-right: 5px;
+    display: inline;
+    margin-left: 10px;
 }

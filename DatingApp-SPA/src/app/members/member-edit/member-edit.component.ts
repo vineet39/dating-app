@@ -15,7 +15,6 @@ import { Photo } from '_models/Photo';
 export class MemberEditComponent implements OnInit {
   @ViewChild('editForm', {static: true}) editForm: NgForm;
   user: Users;
-  mainPhoto: Photo[];
 
   constructor(private route: ActivatedRoute, private alertify: AlertifyService, private userService: UserService,
               private authService: AuthService) { }
@@ -23,7 +22,6 @@ export class MemberEditComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(async data => {
       this.user = await data.user;
-      console.log(this.user.photoUrl);
     });
   }
   updateUser() {
@@ -33,5 +31,8 @@ export class MemberEditComponent implements OnInit {
       this.editForm.reset(this.user);
     });
   }
-
+  updateMainPhoto(url) {
+    this.user.photoUrl = url;
+    this.authService.changeMemberPhoto(url);
+  }
 }
